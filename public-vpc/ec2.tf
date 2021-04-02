@@ -7,6 +7,7 @@ resource "aws_instance" "public_noNAT_instance" {
     device_index         = 0
   }
   key_name = "HP-default"
+  user_data = "hostname viaEIP"
   tags = merge(
     var.tags,
     {
@@ -66,6 +67,7 @@ resource "aws_instance" "public_NAT_instance" {
     network_interface_id = aws_network_interface.nat_nic.id
     device_index         = 0
   }
+  user_data = "hostname viaNAT"
   tags = merge(
     var.tags,
     {

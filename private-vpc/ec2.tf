@@ -23,7 +23,7 @@ resource "aws_instance" "private-instance" {
     network_interface_id = aws_network_interface.private-nic.id
     device_index         = 0
   }
-
+  user_data = "private"
   tags = {
     Name = "PrivateInstance"
   }

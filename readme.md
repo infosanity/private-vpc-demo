@@ -28,3 +28,19 @@ For the private instance, if they can't reach the required Systems Manager API e
 
 ## Proof of Concept
 Access to each EC2 instance, should be available via Session Manager Connect
+### Public, with EIP
+Connect Session
+![Connect Session](Resources/connect_viaEIP.png)
+Matching assigned public EIP
+![EIP Details](Resources/details_EIP.png) 
+
+### Public, via NAT Gateway
+Connect Session
+![Connect Session](Resources/connect_viaNAT.png)
+Matching NAT Gateway
+![EIP Details](Resources/details_NATGateway.png)
+
+### Private, via private VPC Endpoints
+Connect Session
+![Connect Session](Resources/connect_private.png)
+Timing out, due to no Internet access
