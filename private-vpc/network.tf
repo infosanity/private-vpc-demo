@@ -5,7 +5,6 @@ resource "aws_vpc" "private" {
   }
   enable_dns_hostnames = true
   enable_dns_support   = true
-
 }
 
 resource "aws_subnet" "private" {

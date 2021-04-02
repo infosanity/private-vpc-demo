@@ -1,5 +1,5 @@
-resource "aws_iam_role" "ssm_managed_role" {
-  name               = "ssm_managed_role"
+resource "aws_iam_role" "ssm_managed_role_public" {
+  name               = "ssm_managed_role_public"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -21,17 +21,17 @@ EOF
   )
 }
 
-resource "aws_iam_instance_profile" "ssm_managed_profile" {
-  name = "ssm_managed_profile"
-  role = aws_iam_role.ssm_managed_role.name
+resource "aws_iam_instance_profile" "ssm_manage_profile_public" {
+  name = "ssm_manage_profile_public"
+  role = aws_iam_role.ssm_managed_role_public.name
 }
 
-resource "aws_iam_role_policy_attachment" "ssm_managed_role_policy" {
-  role       = aws_iam_role.ssm_managed_role.id
+resource "aws_iam_role_policy_attachment" "ssm_managed_role_public_policy" {
+  role       = aws_iam_role.ssm_managed_role_public.id
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
 resource "aws_iam_role_policy_attachment" "cloudwatch_policy_attachment" {
-  role       = aws_iam_role.ssm_managed_role.name
+  role       = aws_iam_role.ssm_managed_role_public.name
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 }
