@@ -9,14 +9,23 @@ resource "aws_instance" "public_noNAT_instance" {
 
   key_name = "HP-default"
 
-  tags = {
-    Name = "publicInstance"
-  }
+  tags = merge(
+    var.tags,
+    {
+      Name = "publicInstance"
+    }
+  )
 }
 
 resource "aws_network_interface" "public_nic" {
   subnet_id       = aws_subnet.public_noNAT.id
   security_groups = [aws_security_group.instance_sg.id]
+  tags = merge(
+    var.tags,
+    {
+      Name = "publicInstance_NIC"
+    }
+  )
 }
 
 resource "aws_security_group" "instance_sg" {
@@ -29,9 +38,20 @@ resource "aws_security_group" "instance_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = merge(
+    var.tags,
+    {
+      Name = "sg_AllowEgress"
+    }
+  )
 }
 resource "aws_eip" "instance_eip" {
   vpc      = true
   instance = aws_instance.public_noNAT_instance.id
-
+  tags = merge(
+    var.tags,
+    {
+      Name = "publicInstanceEIP"
+    }
+  )
 }

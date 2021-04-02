@@ -15,6 +15,10 @@ resource "aws_iam_role" "ssm_managed_role" {
   ]
 }
 EOF
+  tags = merge(
+    var.tags,
+    {}
+  )
 }
 
 resource "aws_iam_instance_profile" "ssm_managed_profile" {
