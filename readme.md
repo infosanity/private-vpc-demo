@@ -10,7 +10,7 @@ With the correct architecture, Session Manager (via AWS Systems Manager) can be 
 
 ## Architecture
 The below diagram describes the network architecture for each use-case, as deployed by this Terraform code.
-![Network Component Architecture](Resources/Session Manager deployment demo architecture.png)
+![Network](Resources/SessionManagerDeploymentDemoArchitecture.png)
 
 ## [Shared Prerequisites](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-prereqs.html)
 - EC2 intance must run [SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)
