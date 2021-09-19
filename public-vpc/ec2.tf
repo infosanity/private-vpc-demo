@@ -61,7 +61,7 @@ output "public_noNAT_instance" {
 }
 
 ###############################################################
-# Via NAT Gateway
+# Via Linux NAT Gateway
 resource "aws_instance" "public_NAT_instance" {
   ami                  = var.amazon2_ami
   instance_type        = "t3.micro"
@@ -93,4 +93,39 @@ resource "aws_network_interface" "nat_nic" {
 
 output "public_NAT_instance" {
   value = aws_instance.public_NAT_instance.id
+}
+
+###############################################################
+# Windows Via NAT Gateway
+resource "aws_instance" "public_windows_instance" {
+  ami                  = var.windows_ami
+  instance_type        = "t3.micro"
+  iam_instance_profile = aws_iam_instance_profile.ssm_manage_profile_public.name
+  key_name             = var.keyname
+  network_interface {
+    network_interface_id = aws_network_interface.windows_nat_nic.id
+    device_index         = 0
+  }
+  user_data = "hostname windowsVIANAT"
+  tags = merge(
+    var.tags,
+    {
+      Name = "WindowsInstance_viaNAT"
+    }
+  )
+}
+
+resource "aws_network_interface" "windows_nat_nic" {
+  subnet_id       = aws_subnet.public_viaNAT.id
+  security_groups = [aws_security_group.instance_sg.id]
+  tags = merge(
+    var.tags,
+    {
+      Name = "windowsInstance_NATNIC"
+    }
+  )
+}
+
+output "public_windows_instance" {
+  value = aws_instance.public_windows_instance.id
 }
