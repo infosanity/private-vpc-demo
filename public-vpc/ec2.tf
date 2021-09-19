@@ -6,7 +6,7 @@ resource "aws_instance" "public_noNAT_instance" {
     network_interface_id = aws_network_interface.public_nic.id
     device_index         = 0
   }
-  key_name  = "HP-default"
+  key_name  = var.keyname
   user_data = "hostname viaEIP"
   tags = merge(
     var.tags,
@@ -62,7 +62,7 @@ resource "aws_instance" "public_NAT_instance" {
   ami                  = "ami-0d712b3e6e1f798ef" # Amazon2 - eu-west-1
   instance_type        = "t3.micro"
   iam_instance_profile = aws_iam_instance_profile.ssm_manage_profile_public.name
-  key_name             = "HP-default"
+  key_name             = var.keyname
   network_interface {
     network_interface_id = aws_network_interface.nat_nic.id
     device_index         = 0
