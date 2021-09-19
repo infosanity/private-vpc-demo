@@ -8,6 +8,11 @@ resource "aws_key_pair" "key_pair" {
   public_key = tls_private_key.private_key.public_key_openssh
 
   provisioner "local-exec" {
-    command = "echo '${tls_private_key.private_key.private_key_pem}' server_key.pem"
+    command = "Echo '${tls_private_key.private_key.private_key_pem}' > server_key.pem"
   }
+}
+
+output "private_key"{
+  description = "Do ***NOT** do this for production systems"
+  value = nonsensitive(tls_private_key.private_key.private_key_pem)
 }
