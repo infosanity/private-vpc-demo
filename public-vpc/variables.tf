@@ -7,3 +7,8 @@ variable "keyname" {
   description = "SSH Keypair to use"
   type        = string
 }
+
+variable "amazon2_ami" {
+  description = "latest Amazon2 AMI"
+  type        = string
+}

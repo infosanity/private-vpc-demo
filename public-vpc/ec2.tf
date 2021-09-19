@@ -1,5 +1,5 @@
 resource "aws_instance" "public_noNAT_instance" {
-  ami                  = "ami-0d712b3e6e1f798ef" # Amazon2 - eu-west-1
+  ami                  = var.amazon2_ami
   instance_type        = "t3.micro"
   iam_instance_profile = aws_iam_instance_profile.ssm_manage_profile_public.name
   network_interface {
@@ -56,10 +56,14 @@ resource "aws_eip" "instance_eip" {
   )
 }
 
+output "public_noNAT_instance"{
+  value = aws_instance.public_noNAT_instance.id
+}
+
 ###############################################################
 # Via NAT Gateway
 resource "aws_instance" "public_NAT_instance" {
-  ami                  = "ami-0d712b3e6e1f798ef" # Amazon2 - eu-west-1
+  ami                  = var.amazon2_ami
   instance_type        = "t3.micro"
   iam_instance_profile = aws_iam_instance_profile.ssm_manage_profile_public.name
   key_name             = var.keyname
@@ -85,5 +89,8 @@ resource "aws_network_interface" "nat_nic" {
       Name = "publicInstance_NATNIC"
     }
   )
+}
 
+output "public_NAT_instance"{
+  value = aws_instance.public_NAT_instance.id
 }
