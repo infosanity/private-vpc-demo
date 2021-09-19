@@ -12,7 +12,7 @@ resource "aws_key_pair" "key_pair" {
   }
 }
 
-output "private_key"{
+output "private_key" {
   description = "Do ***NOT** do this for production systems"
-  value = nonsensitive(tls_private_key.private_key.private_key_pem)
+  value       = nonsensitive(tls_private_key.private_key.private_key_pem)
 }

@@ -22,6 +22,6 @@ output "public_windows_instance" {
 }
 
 
-output "public_windows_ssm_command_winSyntax"{
+output "public_windows_ssm_command_winSyntax" {
   value = "aws ssm start-session --target ${module.public-vpc[0].public_windows_instance} --document-name AWS-StartPortForwardingSession --parameters 'portNumber'=['3389'],'localPortNumber'=['3389'] --region eu-west-1"
 }

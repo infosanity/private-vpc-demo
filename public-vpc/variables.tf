@@ -13,7 +13,7 @@ variable "amazon2_ami" {
   type        = string
 }
 
-variable "windows_ami"{
+variable "windows_ami" {
   description = "latest Windows Server 2016 Base AMI"
   type        = string
 }
