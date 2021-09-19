@@ -8,6 +8,6 @@ module "private-vpc" {
   }
 }
 
-output "private_instance"{
-  value =  module.private-vpc[0].private_instance
+output "private_instance" {
+  value = module.private-vpc[0].private_instance
 }

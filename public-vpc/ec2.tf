@@ -56,7 +56,7 @@ resource "aws_eip" "instance_eip" {
   )
 }
 
-output "public_noNAT_instance"{
+output "public_noNAT_instance" {
   value = aws_instance.public_noNAT_instance.id
 }
 
@@ -91,6 +91,6 @@ resource "aws_network_interface" "nat_nic" {
   )
 }
 
-output "public_NAT_instance"{
+output "public_NAT_instance" {
   value = aws_instance.public_NAT_instance.id
 }

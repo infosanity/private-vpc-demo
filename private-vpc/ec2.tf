@@ -30,6 +30,6 @@ resource "aws_security_group" "instance_sg" {
   }
 }
 
-output "private_instance"{
+output "private_instance" {
   value = aws_instance.private-instance.id
 }
