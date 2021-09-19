@@ -3,7 +3,12 @@ variable "tags" {
   type        = map(string)
 }
 
-variables "keyname" {
+variable "keyname" {
   description = "Demo SSH Key"
+  type        = string
+}
+
+variable "amazon2_ami" {
+  description = "latest Amazon2 AMI"
   type        = string
 }
