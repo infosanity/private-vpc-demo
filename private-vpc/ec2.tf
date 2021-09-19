@@ -19,6 +19,7 @@ resource "aws_instance" "private-instance" {
   ami                  = "ami-0d712b3e6e1f798ef" #Amazon2
   instance_type        = "t3.micro"
   iam_instance_profile = aws_iam_instance_profile.ssm_managed_profile.name
+  key_name             = var.keyname
   network_interface {
     network_interface_id = aws_network_interface.private-nic.id
     device_index         = 0
