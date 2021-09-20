@@ -9,5 +9,5 @@ module "private-vpc" {
 }
 
 output "private_instance" {
-  value = module.private-vpc[0].private_instance
+  value = var.private_enable == true ? module.private-vpc[0].private_instance : "NotActive"
 }

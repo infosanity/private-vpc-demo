@@ -10,18 +10,18 @@ module "public-vpc" {
 }
 
 output "public_noNAT_instance" {
-  value = module.public-vpc[0].public_noNAT_instance
+  value = var.private_enable == true ? module.public-vpc[0].public_noNAT_instance : "NotActive"
 }
 
 output "public_NAT_instance" {
-  value = module.public-vpc[0].public_NAT_instance
+  value = var.private_enable == true ? module.public-vpc[0].public_NAT_instance : "NotActive"
 }
 
 output "public_windows_instance" {
-  value = module.public-vpc[0].public_windows_instance
+  value = var.private_enable == true ? module.public-vpc[0].public_windows_instance : "NotActive"
 }
 
 
 output "public_windows_ssm_command_winSyntax" {
-  value = "aws ssm start-session --target ${module.public-vpc[0].public_windows_instance} --document-name AWS-StartPortForwardingSession --parameters 'portNumber'=['3389'],'localPortNumber'=['3389'] --region eu-west-1"
+  value = var.private_enable == true ? "aws ssm start-session --target ${module.public-vpc[0].public_windows_instance} --document-name AWS-StartPortForwardingSession --parameters 'portNumber'=['3389'],'localPortNumber'=['3389'] --region eu-west-1" : "NotActive"
 }
